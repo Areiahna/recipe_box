@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-#need new commit
+
 # Create your views here.
 from recipe_app.models import Recipe, Author
 

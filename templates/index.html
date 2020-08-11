@@ -1,0 +1,11 @@
+<div class="conatiner">
+    <h1>World Famous Recipes: </h1>
+    <ul>
+        {% for recipe in recipes %}
+        <li>
+            <h3><a href="/recipe/{{ recipe.id }}/">{{ recipe.title}}</a></h3>
+
+        </li>
+        {% endfor %}
+    </ul>
+</div>

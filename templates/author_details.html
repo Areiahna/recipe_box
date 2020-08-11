@@ -1,0 +1,21 @@
+<div class="container">
+    {% if not current_author %}
+    <h1> Try again</h1>
+    {% else %}
+    <h1>{{current_author}}</h1>
+    <details>
+        <h2>Bio:</h2>
+        <p>{{current_author.bio}}</p>
+
+        <h2>Recipes:</h2>
+
+        {% for recipe in recipes %}
+        <ul>
+            <li>
+                <h3><a href="/recipe/{{ recipe.id }}/">{{recipe.title}}</a></h3>
+            </li>
+        </ul>
+        {% endfor %}
+    </details>
+    {% endif %}
+</div>

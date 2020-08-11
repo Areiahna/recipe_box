@@ -1,0 +1,21 @@
+<div class="container">
+    {% if not current_recipe %}
+    <h1> Try again</h1>
+    {% else %}
+    <h1>{{current_recipe.title}}</h1>
+
+    <details>
+        {% for author in authors %}
+        {% if author.name == current_recipe.author.name %}
+        <h2>Author: <a href="/author/{{ author.id }}/">{{current_recipe.author.name}}</a></h2>
+
+        <p>Descritption: {{current_recipe.description}}</p>
+        <p>Instructions: {{current_recipe.instructions}}</p>
+        <p> Time: {{current_recipe.time}}</p>
+
+        {% endif %}
+        {% endfor %}
+    </details>
+
+    {% endif %}
+</div>

@@ -3,6 +3,7 @@
     <h1> Try again</h1>
     {% else %}
     <h1>{{current_recipe.title}}</h1>
+    <h3><a href="/">Home</a></h3>
 
     <details>
         {% for author in authors %}
@@ -18,4 +19,5 @@
     </details>
 
     {% endif %}
+
 </div>

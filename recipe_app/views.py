@@ -17,7 +17,9 @@ def index_view(request):
 
 def recipe_details(request, recipe_id):
     my_recipe = Recipe.objects.filter(id=recipe_id).first()
-    return render(request, "recipe_details.html", {"current_recipe": my_recipe})
+    is_logged_in = request.user.is_authenticated
+    print(is_logged_in)
+    return render(request, "recipe_details.html", {"current_recipe": my_recipe, "is_logged_in": is_logged_in})
 
 
 def author_details(request, author_id):
@@ -111,6 +113,5 @@ def logout_view(request):
 def add_favorite(request, fav_id):
     favorited = Recipe.objects.filter(id=fav_id).first()
     logged_in_user = request.user
-    breakpoint()
     logged_in_user.author.favorites.add(favorited)
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))

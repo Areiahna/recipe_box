@@ -12,7 +12,9 @@
         <p>Descritption: {{current_recipe.description}}</p>
         <p>Instructions: {{current_recipe.instructions}}</p>
         <p> Time: {{current_recipe.time}}</p>
+        {%if is_logged_in%}
         <a href="/favorite/{{current_recipe.id}}"> Add this recipe to your favorites! </a>
+        {%endif%}
 
     </details>
 

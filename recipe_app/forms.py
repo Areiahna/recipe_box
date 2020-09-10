@@ -10,6 +10,13 @@ class AddRecipeForm(forms.Form):
     instructions = forms.CharField(widget=forms.Textarea)
     time = forms.CharField(max_length=30)
 
+class EditRecipeForm(forms.Form):
+    title = forms.CharField(max_length=50)
+    author = forms.ModelChoiceField(queryset=Author.objects.all())
+    description = forms.CharField(widget=forms.Textarea)
+    instructions = forms.CharField(widget=forms.Textarea)
+    time = forms.CharField(max_length=30)
+
 
 class AddAuthorForm(forms.ModelForm):
     username = forms.CharField(max_length=240)

@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 
 class Author(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-
+    favorites = models.ManyToManyField("Recipe", symmetrical=False, related_name="favorites")
     name = models.CharField(max_length=60)
     bio = models.TextField()
 

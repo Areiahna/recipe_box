@@ -44,6 +44,29 @@ def add_recipe(request):
     form = AddRecipeForm()
     return render(request, "generic_form.html", {"form": form})
 
+def recipe_edit(request, recipe_id):
+    recipe = Recipe.objects.get(id=recipe_id)
+    if request.method == "POST":
+        form = AddRecipeForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            recipe.title = data["title"]
+            recipe.description = data["description"]
+            recipe.author = data["author"]
+            recipe.instructions = data["instructions"]
+            recipe.time = data["time"]
+            recipe.save()
+        return HttpResponseRedirect(reverse("recipe_details", args=[recipe.id]))
+    data = {
+        "title": recipe.title,
+        "description": recipe.description,
+        "time": recipe.time,
+        "author": recipe.author,
+        "instructions": recipe.instructions,
+    }
+    form = AddRecipeForm(initial=data)
+    return render(request, "generic_form.html", {"form": form})
+
 
 @login_required
 @staff_member_required
@@ -84,3 +107,10 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse("homepage"))
+
+def add_favorite(request, fav_id):
+    favorited = Recipe.objects.filter(id=fav_id).first()
+    logged_in_user = request.user
+    breakpoint()
+    logged_in_user.author.favorites.add(favorited)
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))

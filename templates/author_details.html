@@ -18,5 +18,10 @@
         </ul>
         {% endfor %}
     </details>
+    <h2> Favorites: </h2>
+    {%for fav in current_author.favorites.all%}
+    <h2><a href="/recipe/{{fav.id}}">{{fav}}</a></h2>
+    <br>
+    {%endfor%}
     {% endif %}
 </div>

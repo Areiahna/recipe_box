@@ -12,9 +12,16 @@
         <p>Descritption: {{current_recipe.description}}</p>
         <p>Instructions: {{current_recipe.instructions}}</p>
         <p> Time: {{current_recipe.time}}</p>
-
+        {%if is_logged_in%}
+        <a href="/favorite/{{current_recipe.id}}"> Add this recipe to your favorites! </a>
+        {%endif%}
 
     </details>
 
     {% endif %}
+    {% comment %} Help from Sohail with this logic. {% endcomment %}
+    {%if current_recipe.author.user == request.user or request.user.is_staff == True%}
+    <a href='/recipe/{{current_recipe.id}}/edit/'>Edit your recipe! </a>
+    {%endif%}
+
 </div>
